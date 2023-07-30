@@ -1,31 +1,30 @@
 package org.example;
 
-public class Rating {
-    private final int userId;
-    private final int movieId;
-    private final double rating;
-    private final String timestamp;
+import java.sql.Timestamp;
 
-    public Rating(int userId, int movieId, double rating, String timestamp) {
+public class Rating {
+    // Attributes
+    private final int userId;
+    private final double rating;
+    private final Timestamp timestamp; //timestamp
+
+    // Constructor
+    public Rating(int userId, double rating, Timestamp timestamp) {
         this.userId = userId;
-        this.movieId = movieId;
         this.rating = rating;
         this.timestamp = timestamp;
     }
 
+    // Getter & Setter
     public int getUserId() {
         return this.userId;
-    }
-
-    public int getMovieId() {
-        return this.movieId;
     }
 
     public double getRating() {
         return this.rating;
     }
 
-    public String getTimestamp() {
+    public Timestamp getTimestamp() {
         return this.timestamp;
     }
 }

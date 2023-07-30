@@ -24,16 +24,32 @@ public class Movie {
     }
 
     // Methods
+    /**
+     * Adds a single genre to the movie.
+     *
+     * @param movieGenre The rating to be added to the movie (as a String).
+     */
     public void addGenre(String movieGenre) {
         this.movieGenres.add(movieGenre);
     }
 
+    /**
+     * Adds a single rating to the movie.
+     *
+     * @param movieRating The rating to be added to the movie (as a Rating object).
+     */
     public void addRating(Rating movieRating) {
         this.movieRatings.add(movieRating);
     }
 
-    public Double getAverageRating() {
-        Double sum = 0.;
+    /**
+     * Calculates and returns the average rating of the movie.<br>
+     * The average rating is calculated as the sum of all ratings for the movie divided by the number of ratings.
+     *
+     * @return The average rating of the movie as a Double, or null if there are no ratings available.
+     */
+    public double getAverageRating() {
+        double sum = 0;
         for (Rating rating : movieRatings) {
             sum += rating.getRating();
         }
@@ -53,12 +69,12 @@ public class Movie {
         return this.movieGenres;
     }
 
-    public ArrayList<Rating> getMovieRating() {
-        return this.movieRatings;
-    }
-
     public void setMovieGenres(String movieGenre) {
         this.movieGenres.add(movieGenre);
+    }
+
+    public ArrayList<Rating> getMovieRating() {
+        return this.movieRatings;
     }
 
     public void setMovieRatings(ArrayList<Rating> movieRatings) {

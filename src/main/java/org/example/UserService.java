@@ -3,6 +3,7 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public class UserService {
@@ -11,17 +12,21 @@ public class UserService {
     }
 
     // Methods
-    public static String getUserInput() throws IOException {
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        String userInput;
-        do {
-            System.out.println("Bitte geben Sie die Filmnummer ein, zu der Sie eine Bewertung wünschen");
+    /**
+     * Asks the user for an input and reads the input stream, returning the input as an Integer.<br>
+     * If the input is not a valid Integer, the method will return null.
+     *
+     * @return The Integer value representing the user input, or null if the input is not a valid Integer.
+     */
+    public static String getUserInput() {
+        String userInput = "";
+        try (BufferedReader input = new BufferedReader(new InputStreamReader(System.in))) {
+            System.out.println("Bitte geben Sie die Movie ID ein, zu der Sie eine Bewertung wünschen");
             userInput = input.readLine();
-            // ?-? im Test bei "keiner" als Input liest die readLine() Methode einen null Wert
-            if(userInput == null) {
-                return null;
-            }
-        } while (userInput == null || !Pattern.matches("[0-9]+", userInput));
-        return userInput;
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+            logger.warning(e.toString());
+        }
+        return Pattern.matches("[0-9]+", userInput) ? userInput : null;
     }
 }
